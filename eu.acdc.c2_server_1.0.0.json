@@ -1,0 +1,174 @@
+{
+    "title": "A C2 server", 
+    "description": "A command and control server.", 
+    "properties": {
+        "Report-Type": {
+            "title": "Report type: C2", 
+            "description": "The type of the report: a C2 server.",
+            "type": "string",
+            "enum": ["eu.acdc.c2_server"]
+        },
+        "Report-Description": {
+            "title": "Report description", 
+            "description": "The description of the report. This is a free text field characterising the report that should be used for a human readable description rather than for automatic processing. As a rule of thumb this should not be longer than one sentence.",
+            "type": "string"
+        },
+        "Date": {
+            "title": "Time of the reported observation", 
+            "description": "The timestamp when the C2 server was observed.",
+            "type": "string", 
+            "format": "date-time"
+        },
+        "Source-Type": {
+            "title": "Type of the reported object: IP", 
+            "description": "The type of the reported object: an IP address.", 
+            "type": "string", 
+            "enum": ["ipv4", "ipv6"]
+        },
+        "Source": { 
+            "title": "C2 IP", 
+            "description": "The IP address of the C2 server.", 
+            "type": "string"
+        },
+        "Confidence-Level": {
+            "title": "Confidence level of the report", 
+            "description": "The level of confidence put into the accuracy of the report. A number between 0.0 and 1.0 with 0.0 being unreliable and 1.0 being verified to be accurate.", 
+            "type": "number", 
+            "minimum": 0.0, 
+            "maximum": 1.0
+        },
+        "Report-Subcategory": {
+            "title": "C2 subcategory",
+            "description": "The control channel used by the C2.",
+            "type": "string",
+            "enum": ["http", "irc", "other"]
+        },
+        "Report-ID": {
+            "title": "Report ID",
+            "description": "The ID of the report. This is the report ID in the CCH with the suffix @acdc-project.eu.",
+            "type": "string"
+        },
+        "Duration": {
+            "title": "Duration of the C2 observation",
+            "description": "The duration in seconds during which the C2 server was observed. This can be the timespan during which connections to the C2 server were successful.",
+            "type": "integer",
+            "minimum": 0,
+            "optional": true
+        },
+        "Reported-At": {
+            "title": "Time of the report's submission", 
+            "description": "The timestamp when the report was submitted to the CCH.",
+            "type": "string", 
+            "format": "date-time"
+        },
+        "Botnet": {
+            "title": "Botnet C2 is attributed to",
+            "description": "The botnet the C2 server is attributed to.",
+            "type": "string",
+            "optional": true
+        },
+        "Additional-Data": {
+            "title": "Additional data",
+            "description": "Additional data for the observation. This allows putting more specific information into a report on a case by case basis in a structured manner. The usage of this field is at the data providers discretion.",
+            "type": "object",
+            "optional": true
+        },
+        "Alternate-Format-Type": {
+            "title": "Type of the alternate format",
+            "description": "The type of the alternate format description of the observation.",
+            "type": "string",
+            "enum": ["IDMEF", "STIX"],
+            "requires": "Alternate-Format-Type",
+            "optional": true
+        },
+        "Alternate-Format": {
+            "title": "Alternate format description of the observation",
+            "description": "A description of the observation in an alternate format.",
+            "type": "string",
+            "optional": true
+        },
+        "Ip-Version": {
+            "title": "IP version number",
+            "description": "The IP version of the C2 server's IP address.",
+            "type": "integer",
+            "enum": [4, 6],
+            "optional": true
+        },
+        "Ip-Protocol-Number": {
+            "title": "IP protocol number",
+            "description": "The IANA assigned decimal internet protocol number used for C2 connections.",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 255,
+            "optional": true
+        },
+        "C2-Ip-V4": {
+            "title": "IPv4 of the C2",
+            "description": "The IPv4 of the C2 server. If set, this field equals Source.",
+            "type": "string",
+            "format": "ipv4",
+            "requires": "C2-Mode",
+            "optional": true
+        },
+        "C2-Ip-V6": {
+            "title": "IPv6 of the C2",
+            "description": "The IPv6 of the C2 server. If set, this field equals Source.",
+            "type": "string",
+            "format": "ipv6",
+            "requires": "C2-Mode",
+            "optional": true
+        },
+        "C2-Mode": {
+            "title": "C2 IP mode",
+            "description": "The mode of the C2 server IP. This can be plain for unaltered IPs, anon for anonymised IPs, or pseudo for pseudonymised IPs.",
+            "type": "string",
+            "enum": ["plain", "anon", "pseudo"],
+            "optional": true
+        },
+        "C2-Port": {
+            "title": "C2 Port of C2 connections",
+            "description": "The port of C2 connections on the C2 server.",
+            "type": "integer",
+            "optional": true
+        },
+        "Reported-From": {
+            "title": "Sending email address",
+            "type": "string"
+        },
+        "Category": {
+            "title": "The X-ARF category",
+            "type": "string",
+            "enum": ["abuse"]
+        },
+        "User-Agent": {
+            "title": "Name and version of the generating software",
+            "type": "string"
+        },
+        "Attachment": {
+            "title": "Attachment present",
+            "type": "string"
+        },
+        "Schema-URL": {
+            "title": "URI to the JSON-schema",
+            "type": "string",
+            "format": "uri"
+        },
+        "Version": {
+            "title": "Version of the X-ARF specification: 0.2",
+            "type": "number",
+            "enum": [0.2],
+            "optional": true
+        },
+        "Occurences": {
+            "title": "Number of attacks",
+            "type": "integer",
+            "optional": true
+        },
+        "TLP": {
+            "title": "Sensitivity of the report in TLP",
+            "type": "string",
+            "optional": true
+        }
+    },
+    "additionalProperties": false
+}

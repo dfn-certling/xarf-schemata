@@ -1,0 +1,172 @@
+{
+    "title": "Vulnerable URI", 
+    "description": "A URI pointing to a vulnerable resource.", 
+    "properties": {
+        "Report-Type": {
+            "title": "Report type: vulnerable URI", 
+            "description": "The type of the report: a vulnerable URI",
+            "type": "string",
+            "enum": ["eu.acdc.vulnerable_uri"]
+        },
+        "Report-Description": {
+            "title": "Report description", 
+            "description": "The description of the report. This is a free text field characterising the report that should be used for a human readable description rather than for automatic processing. As a rule of thumb, this should not be longer than one sentence.",
+            "type": "string"
+        },
+        "Date": {
+            "title": "Time of the reported observation", 
+            "description": "The timestamp when vulnerable URI was observed.",
+            "type": "string", 
+            "format": "date-time" 
+        },
+        "Source-Type": {
+            "title": "Type of the reported object: URI", 
+            "description": "The type of the reported object: a URI.", 
+            "type": "string", 
+            "enum": ["uri"] 
+        },
+        "Source": { 
+            "title": "Vulnerable URI", 
+            "description": "The URI to the vulnerable resource.", 
+            "type": "string",
+            "format": "uri"
+        },
+        "Confidence-Level": {
+            "title": "Confidence level of the report", 
+            "description": "The level of confidence put into the accuracy of the report. A number between 0.0 and 1.0 with 0.0 being unreliable and 1.0 being verified to be accurate.", 
+            "type": "number", 
+            "minimum": 0.0, 
+            "maximum": 1.0 
+        },
+        "Src-Ip-V4": {
+            "title": "Source IPv4 of the URI",
+            "description": "The source IPv4 associated with the malicious URI.",
+            "type": "string",
+            "format": "ipv4",
+            "optional": true,
+            "requires": "Src-Mode"
+        },
+        "Src-Ip-V6": {
+            "title": "Source IPv6 of the URI",
+            "description": "The source IPv6 associated with the malicious URI.",
+            "type": "string",
+            "format": "ipv6",
+            "optional": true,
+            "requires": "Src-Mode"
+        },
+        "Src-Mode": {
+            "title": "Source IP mode",
+            "description": "The mode of the source IP. This can be plain for unaltered IPs, anon for anonymised IPs, or pseudo for pseudonymised IPs.",
+            "type": "string",
+            "enum": ["plain", "anon", "pseudo"],
+            "optional": true
+        },
+        "Vulnerabilities": {
+            "title": "Vulnerabilities discovered at the URI",
+            "description": "An array of objects describing vulnerabilities discovered at the vulnerable URI.",
+            "type": "array",
+            "items": {
+                "title": "Vulnerability",
+                "description": "Indicator for the type and identifier of the given vulnerability",
+                "type": "object",
+                "properties": { 
+                    "Type": {
+                        "title": "Identifier scheme",
+                        "description": "Indicate whether a CVE or CWE was matched or a heuristic identified the vulnerability",
+                        "type": "string",
+                        "enum": ["cve", "cwe", "other"] 
+                    },
+                    "Value": {
+                        "title": "Vulnerability identifier",
+                        "description": "An indicator for the specific CVE, CWE, or heuristic that was triggered by the URI",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "Report-ID": {
+            "title": "Report ID",
+            "description": "The ID of the report. This is the report ID in the CCH with the suffix @acdc-project.eu.",
+            "type": "string"
+        },
+        "Duration": {
+            "title": "Duration of the reported observation",
+            "description": "The duration in seconds during which the vulnerabilities at the URI were observed.",
+            "type": "integer",
+            "minimum": 0,
+            "optional": true
+        },
+        "Reported-At": {
+            "title": "Time of the report's submission", 
+            "description": "The timestamp when the report was submitted to the CCH.",
+            "type": "string", 
+            "format": "date-time"
+        },
+        "Additional-Data": {
+            "title": "Additional data",
+            "description": "Additional data for the observation. This allows putting more specific information into a report on a case by case basis in a structured manner. The usage of this field is at the data providers discretion.",
+            "type": "object",
+            "optional": true
+        },
+        "Alternate-Format-Type": {
+            "title": "Type of the alternate format",
+            "description": "The type of the alternate format description of the observation.",
+            "type": "string",
+            "enum": ["CybOX", "hpfeeds", "IDMEF", "IODEF", "IPFIX", "NetFlow v9", "OpenIOC", "sFlow", "STIX"],
+            "optional": true
+        },
+        "Alternate-Format": {
+            "title": "Alternate format description of the observation",
+            "description": "A description of the observation in an alternate format.",
+            "type": "string",
+            "optional": true,
+            "requires": "Alternate-Format-Type"
+        },
+        "Ip-Version": {
+            "title": "IP version number",
+            "description": "The IP version of the IP address belonging to the vulnerable URI.",
+            "type": "integer",
+            "enum": [4, 6],
+            "optional": true
+        },
+        "Reported-From": {
+            "title": "Sending email address",
+            "type": "string"
+        },
+        "Category": {
+            "title": "The X-ARF category",
+            "type": "string",
+            "enum": ["abuse"]
+        },
+        "User-Agent": {
+            "title": "Name and version of the generating software",
+            "type": "string"
+        },
+        "Attachment": {
+            "title": "Attachment present",
+            "type": "string"
+        },
+        "Schema-URL": {
+            "title": "URI to the JSON-schema",
+            "type": "string",
+            "format": "uri"
+        },
+        "Version": {
+            "title": "Version of the X-ARF specification: 0.2",
+            "type": "number",
+            "enum": [0.2],
+            "optional": true
+        },
+        "Occurences": {
+            "title": "Number of attacks",
+            "type": "integer",
+            "optional": true
+        },
+        "TLP": {
+            "title": "Sensitivity of the report in TLP",
+            "type": "string",
+            "optional": true
+        }
+    },
+    "additionalProperties": false
+}

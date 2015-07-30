@@ -1,0 +1,125 @@
+{
+    "title": "Fast Flux Domain", 
+    "description": "A fast flux domain.", 
+    "properties": {
+        "Report-Type": {
+            "title": "Report type: Fast flux", 
+            "description": "The type of the report: a fast flux domain.",
+            "type": "string",
+            "enum": ["eu.acdc.fast_flux"]
+        },
+        "Report-Description": {
+            "title": "Report description", 
+            "description": "The description of the report. This is a free text field characterising the report that should be used for a human readable description rather than for automatic processing. As a rule of thumb this should not be longer than one sentence.",
+            "type": "string"
+        },
+        "Date": {
+            "title": "Time of the reported observation", 
+            "description": "The timestamp when the fast flux domain was first observed. If the report contains IPs, this is typically the earliest timestamp of the IPs that the domain resolves to.",
+            "type": "string", 
+            "format": "date-time" 
+        },
+        "Source-Type": {
+            "title": "Type of the reported object: domain", 
+            "description": "The type of the reported object: a domain URI.", 
+            "type": "string", 
+            "enum": ["uri"] 
+        },
+        "Source": { 
+            "title": "Fast flux domain", 
+            "description": "The fast flux domain URI.", 
+            "type": "string",
+            "format": "uri"
+        },
+        "Confidence-Level": {
+            "title": "Confidence level of the report", 
+            "description": "The level of confidence put into the accuracy of the report. A number between 0.0 and 1.0 with 0.0 being unreliable and 1.0 being verified to be accurate.", 
+            "type": "number", 
+            "minimum": 0.0, 
+            "maximum": 1.0 
+        },
+        "Report-ID": {
+            "title": "Report ID",
+            "description": "The ID of the report. This is the report ID in the CCH with the suffix @acdc-project.eu.",
+            "type": "string"
+        },
+        "Duration": {
+            "title": "Duration of the observation",
+            "description": "The duration of the observation in seconds. If the report contains IPs, this is typically the difference between the earliest and the latest timestamp of the IPs that the domain resolves to.",
+            "type": "integer",
+            "minimum": 0,
+            "optional": true
+        },
+        "Reported-At": {
+            "title": "Time of the report's submission", 
+            "description": "The timestamp when the report was submitted to the CCH.",
+            "type": "string", 
+            "format": "date-time"
+        },
+        "Botnet": {
+            "title": "Botnet of the fast flux domain",
+            "description": "The botnet this fast flux domain can be attributed to.",
+            "type": "string",
+            "optional": true
+        },
+        "Additional-Data": {
+            "title": "Additional data",
+            "description": "Additional data for the observation. This allows putting more specific information into a report on a case by case basis in a structured manner. The usage of this field is at the data providers discretion.",
+            "type": "object",
+            "optional": true,
+            "requires": "Alternate-Format-Type"
+        },
+        "Alternate-Format-Type": {
+            "title": "Type of the alternate format",
+            "description": "The type of the alternate format description of the observation.",
+            "type": "string",
+            "enum": ["IDMEF", "STIX"],
+            "optional": true
+        },
+        "Alternate-Format": {
+            "title": "Alternate format description of the observation",
+            "description": "A description of the observation in an alternate format.",
+            "type": "string",
+            "optional": true
+        },
+        "Reported-From": {
+            "title": "Sending email address",
+            "type": "string"
+        },
+        "Category": {
+            "title": "The X-ARF category",
+            "type": "string",
+            "enum": ["abuse"]
+        },
+        "User-Agent": {
+            "title": "Name and version of the generating software",
+            "type": "string"
+        },
+        "Attachment": {
+            "title": "Attachment present",
+            "type": "string"
+        },
+        "Schema-URL": {
+            "title": "URI to the JSON-schema",
+            "type": "string",
+            "format": "uri"
+        },
+        "Version": {
+            "title": "Version of the X-ARF specification: 0.2",
+            "type": "number",
+            "enum": [0.2],
+            "optional": true
+        },
+        "Occurences": {
+            "title": "Number of attacks",
+            "type": "integer",
+            "optional": true
+        },
+        "TLP": {
+            "title": "Sensitivity of the report in TLP",
+            "type": "string",
+            "optional": true
+        }
+    },
+    "additionalProperties": false
+}

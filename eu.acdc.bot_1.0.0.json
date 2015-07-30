@@ -1,0 +1,205 @@
+{
+    "title": "A bot", 
+    "description": "A system infected with a bot.", 
+    "properties": {
+        "Report-Type": {
+            "title": "Report type: a bot", 
+            "description": "The type of the report: a bot infection.",
+            "type": "string",
+            "enum": ["eu.acdc.bot"],
+            "optional": false
+        },
+        "Report-Description": {
+            "title": "Report description", 
+            "description": "The description of the report. This is a free text field characterising the report that should be used for a human readable description rather than for automatic processing. As a rule of thumb this should not be longer than one sentence.",
+            "type": "string"
+        },
+        "Date": {
+            "title": "Time of the reported observation", 
+            "description": "The timestamp when the bot infection was observed.",
+            "type": "string", 
+            "format": "date-time",
+            "optional": false
+        },
+        "Source-Type": {
+            "title": "Type of the reported object: IP", 
+            "description": "The type of the reported object: an IP address.", 
+            "type": "string", 
+            "enum": ["ipv4", "ipv6"],
+            "optional": false
+        },
+        "Source": { 
+            "title": "Infected IP", 
+            "description": "The IP address of the infected system.", 
+            "type": "string",
+            "optional": false
+        },
+        "Confidence-Level": {
+            "title": "Confidence level of the report", 
+            "description": "The level of confidence put into the accuracy of the report. A number between 0.0 and 1.0 with 0.0 being unreliable and 1.0 being verified to be accurate.", 
+            "type": "number", 
+            "minimum": 0.0, 
+            "maximum": 1.0,
+            "optional": false
+        },
+        "Report-Subcategory": {
+            "title": "Report subcategory",
+            "description": "The type of the bot.",
+            "type": "string",
+            "enum": ["fast_flux", "other"],
+            "optional": false
+        },
+        "Report-ID": {
+            "title": "Report ID",
+            "description": "The ID of the report. This is the report ID in the CCH with the suffix @acdc-project.eu.",
+            "type": "string"
+        },
+        "Duration": {
+            "title": "Duration of the bot observation",
+            "description": "The duration in seconds during which the bot infection was observed. This can be the timespan during which connections to the C2 server were observed.",
+            "type": "integer",
+            "minimum": 0
+        },
+        "Reported-At": {
+            "title": "Time of the report's submission", 
+            "description": "The timestamp when the report was submitted to the CCH.",
+            "type": "string", 
+            "format": "date-time"
+        },
+        "Botnet": {
+            "title": "Botnet infection is attributed to",
+            "description": "The botnet the bot is attributed to.",
+            "type": "string"
+        },
+        "Additional-Data": {
+            "title": "Additional data",
+            "description": "Additional data for the observation. This allows putting more specific information into a report on a case by case basis in a structured manner. The usage of this field is at the data providers discretion.",
+            "type": "object"
+        },
+        "Alternate-Format-Type": {
+            "title": "Type of the alternate format",
+            "description": "The type of the alternate format description of the observation.",
+            "type": "string",
+            "enum": ["IDMEF", "STIX"]
+        },
+        "Alternate-Format": {
+            "title": "Alternate format description of the observation",
+            "description": "A description of the observation in an alternate format.",
+            "type": "string",
+            "requires": "Alternate-Format-Type"
+        },
+        "Ip-Version": {
+            "title": "IP version number",
+            "description": "The IP version of the infected sytem's IP address.",
+            "type": "integer",
+            "enum": [4, 6]
+        },
+        "Ip-Protocol-Number": {
+            "title": "IP protocol number",
+            "description": "The IANA assigned decimal internet protocol number of the C2 connection.",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 255
+        },
+        "Src-Ip-V4": {
+            "title": "Source IPv4 of the bot",
+            "description": "The source IPv4 of the bot infected system. If set, this field equals Source.",
+            "type": "string",
+            "format": "ipv4",
+            "requires": "Src-Mode"
+        },
+        "Src-Ip-V6": {
+            "title": "Source IPv6 of the bot",
+            "description": "The source IPv6 of the bot infected system. If set, this field equals Source.",
+            "type": "string",
+            "format": "ipv6",
+            "requires": "Src-Mode"
+        },
+        "Src-Mode": {
+            "title": "Source IP mode",
+            "description": "The mode of the source IP. This can be plain for unaltered IPs, anon for anonymised IPs, or pseudo for pseudonymised IPs.",
+            "type": "string",
+            "enum": ["plain", "anon", "pseudo"]
+        },
+        "Src-Port": {
+            "title": "Source port of the C2 connection",
+            "description": "The source port of the connection from the bot to the C2 server. This is always the port on the bot infected system.",
+            "type": "integer"
+        },
+        "C2-Ip-V4": {
+            "title": "IPv4 of the C2",
+            "description": "The IPv4 of the C2 server.",
+            "type": "string",
+            "format": "ipv4",
+            "requires": "C2-Mode"
+        },
+        "C2-Ip-V6": {
+            "title": "IPv6 of the C2",
+            "description": "The IPv6 of the C2 server.",
+            "type": "string",
+            "format": "ipv6",
+            "requires": "C2-Mode"
+        },
+        "C2-Mode": {
+            "title": "C2 IP mode",
+            "description": "The mode of the C2 server IP. This can be plain for unaltered IPs, anon for anonymised IPs, or pseudo for pseudonymised IPs.",
+            "type": "string",
+            "enum": ["plain", "anon", "pseudo"]
+        },
+        "C2-Port": {
+            "title": "C2 port of the C2 connection",
+            "description": "The port of the C2 connection on the C2 server.",
+            "type": "integer"
+        },
+        "Sample-Sha256": {
+            "title": "Hash of the malware",
+            "description": "The SHA256 hash of the malware the system is infected with.",
+            "type": "string"
+        },
+        "Fast-Flux-Uri": {
+            "title": "URI of the fast flux domain",
+            "description": "The URI of the fast flux domain resolving to this bot.",
+            "type": "string",
+            "format": "uri"
+        },
+        "Reported-From": {
+            "title": "Sending email address",
+            "type": "string"
+        },
+        "Category": {
+            "title": "The X-ARF category",
+            "type": "string",
+            "enum": ["abuse"]
+        },
+        "User-Agent": {
+            "title": "Name and version of the generating software",
+            "type": "string"
+        },
+        "Attachment": {
+            "title": "Attachment present",
+            "type": "string"
+        },
+        "Schema-URL": {
+            "title": "URI to the JSON-schema",
+            "type": "string",
+            "format": "uri"
+        },
+        "Version": {
+            "title": "Version of the X-ARF specification: 0.2",
+            "type": "number",
+            "enum": [0.2],
+            "optional": true
+        },
+        "Occurences": {
+            "title": "Number of attacks",
+            "type": "integer",
+            "optional": true
+        },
+        "TLP": {
+            "title": "Sensitivity of the report in TLP",
+            "type": "string",
+            "optional": true
+        }
+    },
+    "additionalProperties": false
+}

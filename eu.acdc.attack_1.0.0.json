@@ -1,0 +1,226 @@
+{
+    "title": "Attack", 
+    "description": "A host performing an attack.", 
+    "properties": {
+        "Report-Type": {
+            "title": "Report type: attack", 
+            "description": "The type of the report: an attack on a system.",
+            "type": "string",
+            "enum": ["eu.acdc.attack"]
+        },
+        "Report-Description": {
+            "title": "Report description", 
+            "description": "The description of the report. This is a free text field characterising the report that should be used for a human readable description rather than for automatic processing. As a rule of thumb this should not be longer than one sentence.",
+            "type": "string"
+        },
+        "Date": {
+            "title": "Time of the attack observation", 
+            "description": "The timestamp when the attack took place.",
+            "type": "string", 
+            "format": "date-time" 
+        },
+        "Source-Type": {
+            "title": "Type of the reported object: IP", 
+            "description": "The type of the reported object: an IP.", 
+            "type": "string", 
+            "enum": ["ipv4", "ipv6"] 
+        },
+        "Source": { 
+            "title": "Attacking IP", 
+            "description": "The IP of the system performing the attack.", 
+            "type": "string"
+        },
+        "Confidence-Level": {
+            "title": "Confidence level of the report", 
+            "description": "The level of confidence put into the accuracy of the report. A number between 0.0 and 1.0 with 0.0 being unreliable and 1.0 being verified to be accurate.", 
+            "type": "number", 
+            "minimum": 0.0, 
+            "maximum": 1.0 
+        },
+        "Report-Subcategory": {
+            "title": "Attack category",
+            "description": "The type of attack performed.",
+            "type": "string",
+            "enum": ["abuse", "compromise", "data", "dos", "dos.dns", "dos.http", "dos.tcp", "dos.udp", "login", "malware", "other"]
+        },
+        "Ip-Protocol-Number": {
+            "title": "IP protocol number",
+            "description": "The IANA assigned decimal internet protocol number of the attack connection.",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 255
+        },
+        "Ip-Version": {
+            "title": "IP version number",
+            "description": "The IP version of the attack connection.",
+            "type": "integer",
+            "enum": [4, 6]
+        },
+        "Report-ID": {
+            "title": "Report ID",
+            "description": "The ID of the report. This is the report ID in the CCH with the suffix @acdc-project.eu.",
+            "type": "string"
+        },
+        "Duration": {
+            "title": "The duration of the attack",
+            "description": "The duration of the attack in seconds.",
+            "type": "integer",
+            "minimum": 0,
+            "optional": true
+        },
+        "Reported-At": {
+            "title": "Time of the report's submission", 
+            "description": "The timestamp when the report was submitted to the CCH.",
+            "type": "string", 
+            "format": "date-time"
+        },
+        "Botnet": {
+            "title": "Botnet responsible for attack",
+            "description": "The botnet this attack can be attributed to.",
+            "type": "string",
+            "optional": true
+        },
+        "Additional-Data": {
+            "title": "Additional data",
+            "description": "Additional data for the observation. This allows putting more specific information into a report on a case by case basis in a structured manner. The usage of this field is at the data providers discretion.",
+            "type": "object",
+            "optional": true
+        },
+        "Alternate-Format-Type": {
+            "title": "Type of the alternate format",
+            "description": "The type of the alternate format description of the observation.",
+            "type": "string",
+            "enum": ["IDMEF", "STIX"],
+            "optional": true
+        },
+        "Alternate-Format": {
+            "title": "Alternate format description of the observation",
+            "description": "A description of the observation in an alternate format.",
+            "type": "string",
+            "optional": true,
+            "requires": "Alternate-Format-Type"
+        },
+        "Src-Ip-V4": {
+            "title": "Source IPv4 of the attack",
+            "description": "The source IPv4 of the attack connection. This is always the IP of the attacking system (i.e., the one identified by Source). If set, this field equals Source.",
+            "type": "string",
+            "format": "ipv4",
+            "optional": true,
+            "requires": "Src-Mode"
+        },
+        "Src-Ip-V6": {
+            "title": "Source IPv6 of the attack",
+            "description": "The source IPv6 of the attack connection. This is always the IP of the attacking system (i.e., the one identified by Source). If set, this field equals Source.",
+            "type": "string",
+            "format": "ipv6",
+            "optional": true,
+            "requires": "Src-Mode"
+        },
+        "Src-Mode": {
+            "title": "Source IP mode",
+            "description": "The mode of the source IP. This can be plain for unaltered IPs, anon for anonymised IPs, or pseudo for pseudonymised IPs.",
+            "type": "string",
+            "enum": ["plain", "anon", "pseudo"],
+            "optional": true
+        },
+        "Dst-Ip-V4": {
+            "title": "Destination IPv4 of the attack",
+            "description": "The destination IPv4 of the attack connection. This is always the IP of the attacked system.",
+            "type": "string",
+            "format": "ipv4",
+            "optional": true,
+            "requires": "Dst-Mode"
+        },
+        "Dst-Ip-V6": {
+            "title": "Destination IPv6 of the attack",
+            "description": "The destination IPv6 of the attack connection. This is always the IP of the attacked system.",
+            "type": "string",
+            "format": "ipv6",
+            "optional": true,
+            "requires": "Dst-Mode"
+        },
+        "Dst-Mode": {
+            "title": "Destination IP mode",
+            "description": "The mode of the destination IP. This can be plain for unaltered IPs, anon for anonymised IPs, or pseudo for pseudonymised IPs.",
+            "type": "string",
+            "enum": ["plain", "anon", "pseudo"],
+            "optional": true
+        },
+        "Src-Port": {
+            "title": "Source port of the attack",
+            "description": "The source port of the attack connection. This is always the port on the attacking system (i.e., the one identified by Source).",
+            "type": "integer",
+            "optional": true
+        },
+        "Dst-Port": {
+            "title": "Destination port of the attack",
+            "description": "The destination port of the attack connection. This is always the port on the attacked system.",
+            "type": "integer",
+            "optional": true
+        },
+        "Sample-Filename": {
+            "title": "Filename of the payload",
+            "description": "The filename used for the payload that the attack tried to install or run on the attacked system. This should only be used if the payload is uploaded to the attacked system directly. Otherwise, Malicious-Uri should be used to link this report to an eu.acdc.malicious_uri report that in turn contains the SHA256 hash.",
+            "type": "string",
+            "optional": true
+        },
+        "Sample-Sha256": {
+            "title": "Hash of the payload",
+            "description": "The SHA256 hash of the payload that the attack tried to install or run on the attacked system.",
+            "type": "string",
+            "optional": true
+        },
+        "Malicious-Uri": {
+            "title": "URI of the payload",
+            "description": "The URI of the payload in the wild that the attack tried to install or run on the attacked system. This can for example be the location of a malware offered as a download or a webshell offered as a remote include during an attack.",
+            "type": "string",
+            "format": "uri",
+            "optional": true
+        },
+        "Subject-Text": {
+            "title": "Subject of spam email",
+            "description": "The subject of an email sent in a report of subcategory abuse.",
+            "type": "string",
+            "optional": true
+        },
+        "Reported-From": {
+            "title": "Sending email address",
+            "type": "string"
+        },
+        "Category": {
+            "title": "The X-ARF category",
+            "type": "string",
+            "enum": ["abuse"]
+        },
+        "User-Agent": {
+            "title": "Name and version of the generating software",
+            "type": "string"
+        },
+        "Attachment": {
+            "title": "Attachment present",
+            "type": "string"
+        },
+        "Schema-URL": {
+            "title": "URI to the JSON-schema",
+            "type": "string",
+            "format": "uri"
+        },
+        "Version": {
+            "title": "Version of the X-ARF specification: 0.2",
+            "type": "number",
+            "enum": [0.2],
+            "optional": true
+        },
+        "Occurences": {
+            "title": "Number of attacks",
+            "type": "integer",
+            "optional": true
+        },
+        "TLP": {
+            "title": "Sensitivity of the report in TLP",
+            "type": "string",
+            "optional": true
+        }
+    },
+    "additionalProperties": false
+}
